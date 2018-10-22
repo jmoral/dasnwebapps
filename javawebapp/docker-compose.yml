@@ -1,0 +1,9 @@
+version: '2'
+services:
+    wwwserver:
+       build: .
+       image: dasn/javawebapp 
+       ports:
+            - "8080:8080"
+       volumes:
+            - ./src/target/javawebapp-1.0-SNAPSHOT.war:/usr/local/tomcat/webapps/ROOT.war

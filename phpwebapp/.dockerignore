@@ -1,0 +1,6 @@
+Makefile
+docker-compose.yml
+README.md
+
+**/*swp
+**/*sqlite

@@ -1,0 +1,12 @@
+version: '2'
+services:
+    wwwserver:
+       build: .
+       image: dasn/phpwebapp 
+       environment:
+            PORT: 80 
+       ports:
+            - "8080:80"
+       volumes:
+            - ./html:/var/www/html
+

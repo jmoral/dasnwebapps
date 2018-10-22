@@ -1,0 +1,8 @@
+Makefile
+docker-compose.yml
+README.md
+
+**/node_modules
+npm-debug.log
+**/*sqlite
+**/*swp

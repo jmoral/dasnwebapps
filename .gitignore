@@ -1,0 +1,5 @@
+**/target
+**/.DS_Store
+**/*.sqlite
+**/*.swp
+**/node_modules
