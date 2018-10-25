@@ -1,21 +1,16 @@
-# Sample containers with Insecure Web Apps
+# Ejercicio 2 dasn
 
-Playing with containers
+Autores  mjnd0001, jrmc0002
+pasos necesarios para lanzar el contenedor en local y poder utilizar la aplicación
+web contenida, direcciones web de la imagen publicada en docker hub y dirección temporal
+donde pueda consultarse el contenedor desplegado en Google Cloud, así como las
+referencias consultadas
 
-## Usage
-````
-$ cd appfolder
-````
-* Option 1
+## Pila usada
+linux, java, tomcat
+## Pasos necesarios para lanzar el contenedor en local
 
-````
-$ make
-````
+Publicada en https://github.com/jmoral/dasnwebapps
 
-* Option 2
-
-````
-$ docker-compose up -d
-$ docker-compose ps
-````
+## Referencias consultadas
 
