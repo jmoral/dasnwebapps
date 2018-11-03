@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-@WebServlet("/notes_corregido1/*")
+@WebServlet("/notes_corregido/*")
 public class NotesCorregidoServlet extends HttpServlet {
 
     @Inject
@@ -86,7 +86,7 @@ public class NotesCorregidoServlet extends HttpServlet {
 			Log.log(Level.SEVERE, e.getMessage(), e);
 		}
         request.setAttribute("notes", notes);
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/notes.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/notes_corregido.jsp");
         rd.forward(request, response);
     }
 

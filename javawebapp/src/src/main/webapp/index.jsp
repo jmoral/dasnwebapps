@@ -14,9 +14,14 @@
 		</p>
 		<li><a href="notes/?id=1 or id=2">sql injection. ejemplo 1</a></li>
 		<p>Este prueba debería devolver un solo registro, pero devuelve 2 por injección de SQL</p>
-		<li><a href="notes_corregido1/?id=1 or id=2">ejemplo 1 corregido</a></li>
+		<li><a href="notes_corregido/?id=1 or id=2">ejemplo 1 corregido</a></li>
 		<p>La misma prueba anterior pero usamos prepareStatement</p>
-		<li><a href="notes/?id=1 or id=2">ejemplo 3 ocultamiento de información de errores</a></li>
+		<li><a href="no_existe">ocultamiento de información de errores</a></li>
+		<p>Llamamos a una ruta que no existe y ocultamos la información del error con una página genérica</p>
+		<li><a href="notes_corregido/">XSS</a></li>
+		<p>Para ataques xss aplicamos los filtros de <a href="https://www.owasp.org/index.php/Content_Security_Policy">owasp</a></p>
+		<p>aseguramos que la cookie de sesion es solo http</p>
+		<p>escapamos los valores devueltos con fn:escapeXml</p>
 	</ul>
 </body>
 </html>
