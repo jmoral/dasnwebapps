@@ -10,6 +10,7 @@
 	<ul>
 		<li><a href="notes/initdb">Inicialización de la base de datos</a></li>
 		<li><a href="notes_corregido/xssdb">inclusión en la base de datos de un xss permanente</a></li>
+		<li><a href="notes/">consulta de notas sin corregir</a></li>
 		<li><a href="notes_corregido/?id=A">validación de parametros GET</a></li>
 		<p>Se verifica que el parametro id es un numero con Pattern.matches y se controla la excepción NumberFormatException</p>
 		<p>No se permite pasar un id no númerico</p>
