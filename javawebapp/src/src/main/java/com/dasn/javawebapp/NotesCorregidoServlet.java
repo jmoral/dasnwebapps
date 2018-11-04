@@ -1,7 +1,6 @@
 package com.dasn.javawebapp;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+import org.apache.commons.lang3.StringEscapeUtils;
 
 @WebServlet("/notes_corregido/*")
 public class NotesCorregidoServlet extends HttpServlet {
@@ -27,8 +27,7 @@ public class NotesCorregidoServlet extends HttpServlet {
     @Inject
     private DataSource ds;
     
-    private static final Logger Log= Logger.getLogger(NotesCorregidoServlet.class.getName());
-
+    private static final Logger LOG= Logger.getLogger(NotesCorregidoServlet.class.getName());
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -44,11 +43,10 @@ public class NotesCorregidoServlet extends HttpServlet {
         String action = (request.getPathInfo() != null ? request.getPathInfo() : "");
 
         switch (action) {
-            case ("/initdb"):
-                initDB();
+            case ("/xssdb"):
+				xssDB();
                 response.sendRedirect(".");
                 break;
-			//case ("/")
             default:
                 getNotes(request, response);
         }
@@ -83,34 +81,22 @@ public class NotesCorregidoServlet extends HttpServlet {
 				}
 			}
 		} catch (SQLException| NumberFormatException e) {
-			Log.log(Level.SEVERE, e.getMessage(), e);
+			LOG.log(Level.SEVERE, e.getMessage(), e);
 		}
         request.setAttribute("notes", notes);
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/notes_corregido.jsp");
         rd.forward(request, response);
     }
 
-    public void initDB() {
+    public void xssDB() {
         String query;
         try (Connection dbc = ds.getConnection();
                 Statement st = dbc.createStatement();) {
-            query = "CREATE TABLE  notes ("
-                    + "id INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),"
-                    + "title VARCHAR(100),"
-                    + "text VARCHAR(255),"
-                    + "hidden BOOLEAN)";
-            st.execute(query);
-        } catch (SQLException e) {
-            Log.log(Level.SEVERE, e.getMessage(), e);
-        }
-        try (Connection dbc = ds.getConnection();
-                Statement st = dbc.createStatement();) {
             query = "INSERT INTO notes (title,text,hidden) VALUES"
-                    + "('first','Hello world',false),"
-                    + "('second','Hidden',true)";
+                    + "('<script>alert(\"mensaje\")</script>','mensaje con xss',false)";
             st.execute(query);
         } catch (SQLException e) {
-            Log.log(Level.SEVERE, e.getMessage(), e);
+            LOG.log(Level.SEVERE, e.getMessage(), e);
         }
     }
 
@@ -123,8 +109,8 @@ public class NotesCorregidoServlet extends HttpServlet {
 
         String query="INSERT INTO notes (title,text,hidden) VALUES ('%s','%s',%s)";
         query=String.format(query,
-                request.getParameter("title"),
-                request.getParameter("text"),
+                StringEscapeUtils.escapeHtml4(request.getParameter("title")),
+                StringEscapeUtils.escapeHtml4(request.getParameter("text")),
                 "false");                
                 
         try (Connection conn=ds.getConnection();
@@ -132,9 +118,8 @@ public class NotesCorregidoServlet extends HttpServlet {
         ){
             st.executeUpdate(query);
         } catch (SQLException ex) {
-            Log.log(Level.SEVERE, ex.getMessage(), ex);
+            LOG.log(Level.SEVERE, ex.getMessage(), ex);
         }
-
         response.sendRedirect(".");
     }
 }

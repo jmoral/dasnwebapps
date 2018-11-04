@@ -8,10 +8,13 @@
 		linux, java, tomcat
 		<h2>ejemplos</h2>
 	<ul>
-		<li><a href="notes_corregido/?id=A">validación de datos del formulario</a></li>
-		<p>Se verifica que el parametro id es un numero con Pattern.matches y se controla la excepción NumberFormatException
-			No se permite pasar un id no númerico
-		</p>
+		<li><a href="notes/initdb">Inicialización de la base de datos</a></li>
+		<li><a href="notes_corregido/xssdb">inclusión en la base de datos de un xss permanente</a></li>
+		<li><a href="notes_corregido/?id=A">validación de parametros GET</a></li>
+		<p>Se verifica que el parametro id es un numero con Pattern.matches y se controla la excepción NumberFormatException</p>
+		<p>No se permite pasar un id no númerico</p>
+		<li><a href="notes_corregido/">validación de datos del formulario con POST</a></li>
+		<p>Se escapan las entradas de texto del usuario con StringEscapeUtils.escapeHtml4</p>
 		<li><a href="notes/?id=1 or id=2">sql injection. ejemplo 1</a></li>
 		<p>Este prueba debería devolver un solo registro, pero devuelve 2 por injección de SQL</p>
 		<li><a href="notes_corregido/?id=1 or id=2">ejemplo 1 corregido</a></li>
