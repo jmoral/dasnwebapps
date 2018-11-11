@@ -1,3 +1,4 @@
+<%@page import="javax.servlet.http.HttpServletResponse"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <body>
@@ -26,6 +27,9 @@
 		<p>Para ataques xss aplicamos los filtros de <a href="https://www.owasp.org/index.php/Content_Security_Policy">owasp</a></p>
 		<p>aseguramos que la cookie de sesion es solo http</p>
 		<p>escapamos los valores devueltos con fn:escapeXml</p>
+		<li><a href="<%= response.encodeURL("notes_csrf/login.jsp")%>">csrf</a></li>
+		<p>hay que acceder primero por el entry point el filtro csrf</p>
+		
 	</ul>
 </body>
 </html>

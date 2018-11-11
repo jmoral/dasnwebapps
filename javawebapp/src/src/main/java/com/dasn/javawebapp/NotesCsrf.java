@@ -21,13 +21,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import org.apache.commons.lang3.StringEscapeUtils;
 
-@WebServlet("/notes_corregido/*")
-public class NotesCorregidoServlet extends HttpServlet {
+@WebServlet("/notes_csrf/accion/*")
+public class NotesCsrf extends HttpServlet {
 
     @Inject
     private DataSource ds;
     
-    private static final Logger LOG= Logger.getLogger(NotesCorregidoServlet.class.getName());
+    private static final Logger LOG= Logger.getLogger(NotesCsrf.class.getName());
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
